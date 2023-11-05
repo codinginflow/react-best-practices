@@ -1,35 +1,41 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
+
+const user = {
+  name: "John Doe",
+  age: 25,
+  address: {
+    street: "Main Street",
+    number: 123,
+    city: "New York",
+    state: "NY",
+  },
+};
 
 export default function Home() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-  const fullName = firstName + " " + lastName;
-
-  const vowelsMemoized = useMemo(() => {
-    const chars = fullName.split("");
-    const vowels = chars.filter((char) => "aeiou".includes(char));
-    return vowels;
-  }, [fullName]);
+  const [showAddress, setShowAddress] = useState(false);
 
   return (
-    <main className="p-4 flex flex-col gap-1">
-      <p>Full name: {fullName}</p>
-      <p>Vowels: {vowelsMemoized.join(", ")}</p>
-      <input
-        placeholder="First name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        className="border p-1 rounded w-40"
-      />
-      <input
-        placeholder="Last name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        className="border p-1 rounded w-40"
-      />
+    <main className="p-4 space-y-1.5">
+      <p>{user.name}</p>
+      <p>{user.age}</p>
+      {!showAddress && (
+        <button
+          className="border rounded bg-black text-white p-2"
+          onClick={() => setShowAddress(true)}
+        >
+          Show Address
+        </button>
+      )}
+      {showAddress && (
+        <>
+          <p>{user.address.street}</p>
+          <p>{user.address.number}</p>
+          <p>{user.address.city}</p>
+          <p>{user.address.state}</p>
+        </>
+      )}
     </main>
   );
 }
