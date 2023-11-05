@@ -6,7 +6,7 @@ interface ToastContext {
   showToast: (message: string) => void;
 }
 
-export const ToastContext = createContext<ToastContext | undefined>(undefined);
+const ToastContext = createContext<ToastContext | undefined>(undefined);
 
 export default function ToastProvider({
   children,
