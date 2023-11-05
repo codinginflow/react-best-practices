@@ -1,35 +1,35 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  useEffect(() => {
+    connect();
+    return () => disconnect();
+  }, []);
 
-  const fullName = firstName + " " + lastName;
+  useEffect(() => {
+    function handleKeyPress(e: KeyboardEvent) {
+      console.log("key pressed", e.key);
+    }
 
-  const vowelsMemoized = useMemo(() => {
-    const chars = fullName.split("");
-    const vowels = chars.filter((char) => "aeiou".includes(char));
-    return vowels;
-  }, [fullName]);
+    window.addEventListener("keypress", handleKeyPress);
+    return () => window.removeEventListener("keypress", handleKeyPress);
+  }, []);
 
   return (
-    <main className="p-4 flex flex-col gap-1">
-      <p>Full name: {fullName}</p>
-      <p>Vowels: {vowelsMemoized.join(", ")}</p>
-      <input
-        placeholder="First name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        className="border p-1 rounded w-40"
-      />
-      <input
-        placeholder="Last name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        className="border p-1 rounded w-40"
-      />
-    </main>
+    <div className="p-4">
+      <p>Check the console for logs</p>
+    </div>
   );
+}
+
+function connect() {
+  console.log("connecting...");
+  console.log("connected");
+}
+
+function disconnect() {
+  console.log("disconnecting...");
+  console.log("disconnected");
 }
