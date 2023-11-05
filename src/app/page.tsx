@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function Home() {
   const [firstName, setFirstName] = useState("");
@@ -11,8 +11,8 @@ export default function Home() {
   const vowelsMemoized = useMemo(() => {
     const chars = fullName.split("");
     const vowels = chars.filter((char) => "aeiou".includes(char));
-    return vowels
-  }, [fullName])
+    return vowels;
+  }, [fullName]);
 
   return (
     <main className="p-4 flex flex-col gap-1">
