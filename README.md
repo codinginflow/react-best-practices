@@ -1,4 +1,4 @@
-![Banner 300x80](https://github.com/codinginflow/react-best-practices/assets/52977034/625b5911-092f-4445-8a55-c0b2def2b9b7)
+![featured_image - Copy](https://github.com/codinginflow/react-best-practices/assets/52977034/712f1549-6b2e-409e-849f-bca1a7ce81c1)
 
 ## React Best Pratices
 
